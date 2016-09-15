@@ -11,20 +11,21 @@
 <body>
    <div class="container">
      <h1>Lunch Checker</h1>
-      <div ng-controller="LunchcheckController">
+      <div ng-controller="LunchCheckController">
          <div class="form-group">
              <input id="lunch-menu" type="text"
              placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
+             class="form-control" ng-model="lunchMenu">
+             <p>Empty items like , ,   ,,, are not counted as items</p>
          </div>
          <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
+             <button class="btn btn-default" ng-click="countMenuItems()">Check If Too Much</button>
          </div>
          <div class="form-group message">
-           <!-- Your message can go here. -->
-         </div>
+           {{message}}
       </div>
    </div>
-<script src="angular.min.js"></script>
+   <script src="angular.min.js"></script>
+   <script src="app.js"></script>
 </body>
 </html>
