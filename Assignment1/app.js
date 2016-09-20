@@ -2,15 +2,26 @@
 	'use strict';
 	angular.module("LunchCheck",[])
 	.controller("LunchCheckController",LunchCheckController);
+// Uncomment if not using controller as syntax
+	//  LunchCheckController.$inject = ["$scope"];
+	// function LunchCheckController($scope){
+	// 	$scope.lunchMenu = "";
+	// 	$scope.message="";
+	// 	$scope.countMenuItems = function() {
+	// 		var message = getMessage($scope.lunchMenu);
+	// 		$scope.message = message;
+	// 	}
 
-	LunchCheckController.$inject = ["$scope"];
-	function LunchCheckController($scope){
-		$scope.lunchMenu = "";
-		$scope.message="";
-		$scope.countMenuItems = function() {
-			var message = getMessage($scope.lunchMenu);
-			$scope.message = message;
+// comment if not using controller as syntax
+	function LunchCheckController(){
+		var check = this;
+		check.lunchMenu = "";
+		check.message="";
+		check.countMenuItems = function() {
+			var message = getMessage(check.lunchMenu);
+			check.message = message;
 		}
+
 
 		function getMessage(data) {
 			var itemCount = countItemsFromData(data);
