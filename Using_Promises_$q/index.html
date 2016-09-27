@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<title>Using Promise</title>
+</head>
+<body>
+	<h1>ShoppingList with a Promise</h1>
+	<div ng-controller = "ShoppingListController as list">
+		<h3>Shopping List</h3>
+		<input type="text" ng-model="list.itemName" placeholder="item name">
+		<input type="text" ng-model="list.itemQuantity" placeholder="quantity">boxes
+		<button ng-click="list.addItem();">Add Item</button>
+		<div ng-controller="ShoppingController as showList">
+			<ol>
+				<li ng-repeat="item in showList.items">
+				{{item.quantity}} boxes of {{item.name}}
+				<button ng-click="showList.removeItem($index);">Remove Item</button>	
+				</li>
+			</ol>
+		</div>
+	</div>
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
