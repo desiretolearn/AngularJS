@@ -24,10 +24,7 @@
 	 }
 
 	 function ShoppingListDirectiveLink(scope,element,attrs,controller) {
-	 	console.log("link scope is:", scope);
-	 	console.log("link element is:", element);
-	 	console.log("link attrs is:", attrs);
-	 	console.log("link controller is:", controller);
+	 	
 	 	scope.$watch('list.cookiesInList()', function(newValue,oldValue) {
 	 		console.log("oldValue :", oldValue);
 	 		console.log("newValue :", newValue);

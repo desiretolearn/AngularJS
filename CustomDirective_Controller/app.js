@@ -10,8 +10,8 @@
 	 	var ddo = {
 	 		templateUrl : 'shoppingList.html',
 	 		scope: {
-	 			items : '<',
-	 			title: '@'
+	 			items : '<nItems',
+	 			title: '@nTitle'
 	 		},
 	 		controller: "ShoppingListDirectiveController as list",
 	 		//controllerAs:'list',
