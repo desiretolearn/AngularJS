@@ -2,25 +2,41 @@
 	'use strict';
 	angular.module('app',[])
 	.controller('ShoppingListController1',ShoppingListController1)
-	.controller('ShoppingListController2',ShoppingListController2)
+	.controller('ShoppingListDirectiveController',ShoppingListDirectiveController)
 	 .factory('ShoppingListFactory',ShoppingListFactory)
-	 .directive('listItemDescription',ListItemDescription)
-	 .directive('listItem',ListItem);
+	 .directive('shoppingList',ShoppingList);
 
-	 function ListItemDescription() {
+	 function ShoppingList() {
 	 	var ddo = {
-	 		template : '{{item.quantity}} of {{item.name}}'
-	 	}
+	 		templateUrl : 'shoppingList.html',
+	 		scope: {
+	 			items : '<',
+	 			title: '@',
+	 			badRemove: '=badRemoveItem',
+	 			onRemove: '&onRemoveItem'
+	 		},
+	 		controller: "ShoppingListDirectiveController as list",
+	 		//controllerAs:'list',
+	 		bindToController: true	 
+	 	};
 	 	return ddo;
 	 }
 
-	 function ListItem() {
-	 	var ddo = {
-	 		restrict : "E",
-	 		templateUrl : "listItem.html"
-	 	}
-	 	return ddo;
+
+	 function ShoppingListDirectiveController() {
+	 	var list = this;
+	 	this.cookiesInList = function() {
+	 		for(var i=0;i<list.items.length;i++){
+	 			var name = list.items[i].name;
+	 			if(name.toLowerCase().indexOf('cookie')!==-1) {
+	 				return true;
+	 			}
+	 		}
+	 		return false;
+	 	};
 	 }
+
+	
 
 	ShoppingListController1.$inject = ['ShoppingListFactory'];
 	function ShoppingListController1(ShoppingListFactory) {
@@ -30,42 +46,24 @@
 
 		/* below line for factory returned as objext literal */
 		var shoppingList = ShoppingListFactory.getShoppingListService();
-		console.log(shoppingList);
 
 		list1.items = shoppingList.getItems();
+		var origTitle = "Shopping List #1";
+		list1.title = origTitle + "(" + list1.items.length+ " items)";
 		list1.itemName="";
 		list1.itemQuantity="";
 		list1.addItem = function () {
-			shoppingList.addItem(list1.itemName,list1.itemQuantity); 
+			shoppingList.addItem(list1.itemName,list1.itemQuantity);
+			list1.title = origTitle + "(" + list1.items.length+ " items)"; 
 		};
 		list1.removeItem = function(index) {
+			this.lastRemoved = "last item removed was "+ this.items[index].name;
 			shoppingList.removeItem(index);
+			list1.title = origTitle + "(" + list1.items.length+ " items)";
 		};
 	}
 
-	ShoppingListController2.$inject = ['ShoppingListFactory'];
-	function ShoppingListController2(ShoppingListFactory) {
-		var list2 = this;
-		/* below line for factory returned as function 
-		var shoppingList = ShoppingListFactory(); */
-
-		/* below line for factory returned as objext literal */
-		var shoppingList = ShoppingListFactory.getShoppingListService(3);
-
-		list2.items = shoppingList.getItems();
-		list2.itemName="";
-		list2.itemQuantity="";
-		list2.addItem = function () {
-			try {
-			shoppingList.addItem(list2.itemName,list2.itemQuantity);
-			} catch(error) {
-				list2.errorMessage = error.message;
-			}
-		};
-		list2.removeItem = function(index) {
-			shoppingList.removeItem(index);
-		};
-	}
+	
 
 	function ShoppingListFactory () {
 		/* returns factory as a object literal */

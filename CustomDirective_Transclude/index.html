@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app = "app">
+<head>
+	<meta charset="utf-8">
+	<script src="jquery.min.js"></script>
+	<script src="angular.min.js"></script>
+	<script src="app.js"></script>
+	<link rel='stylesheet' href='styles.css'>
+	<title>Custom Directive with Transclude</title>
+</head>
+<body>
+	<h1>Custom Directive with Transclude</h1>
+	<div id="list1" ng-controller='ShoppingListController1 as list1'>
+		
+		<input type="text" ng-model="list1.itemName" placeholder="item name">
+		<input type="text" ng-model="list1.itemQuantity" placeholder="quantity">
+		<button ng-click="list1.addItem();">Add Item</button>
+		<span>{{list1.lastRemoved}}</span>
+		
+		<shopping-list id="list1" items="list1.items" title={{list1.title}} 
+		on-remove-item="list1.removeItem(index)">
+			<span class="warning">Warning {{list1.warning}}</span>
+		</shopping-list>
+
+		<shopping-list id="list2" items="list1.items" title={{list1.title}} 
+		on-remove-item="list1.removeItem(index)">
+			<div class="title">OH WARNING ITS HORROR</div>
+				<div>{{list1.warning}}</div>
+			</div>
+		</shopping-list>
+		
+	</div>
+
+	
+
+</body>
+</html>
