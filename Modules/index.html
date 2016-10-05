@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="ShoppingList">
+<head>
+	<meta charset="utf-8">
+	<link rel='stylesheet' href='css/styles.css'>
+	<title>Modules</title>
+</head>
+<body>
+	<h1>Modules</h1>
+	<div id="list" ng-controller='ShoppingListController as list'>
+		<input type="text" ng-model="list.itemName" placeholder="item name">
+		<input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+		<button ng-click="list.addItem();">Add Item</button>
+		<span>{{list.lastRemoved}}</span>
+		
+		<shopping-list-component items="list.items" 
+					   title={{list.title}} 
+					   on-remove="list.removeItem(index)"></shopping-list-component>
+
+	</div>
+	<loading-spinner></loading-spinner>
+	
+	<!-- Libraries -->
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/angular.min.js"></script>
+	<!-- Modules -->
+	<script src="src/shoppinglist/shoppinglist.module.js"></script>
+	<script src="src/spinner/spinner.module.js"></script>
+
+	<script src="src/shoppinglist/shoppinglist.component.js"></script>
+	<script src="src/shoppinglist/shoppinglist.controller.js"></script>
+	<script src="src/shoppinglist/shoppinglist.factory.js"></script>
+	<script src="src/shoppinglist/weightlossfilter.service.js"></script>
+
+	<script src="src/spinner/spinner.component.js"></script>
+		
+
+</body>
+</html>
+
+
+   

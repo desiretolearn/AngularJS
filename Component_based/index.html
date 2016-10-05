@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app = "app">
+<head>
+	<meta charset="utf-8">
+	<script src="jquery.min.js"></script>
+	<script src="angular.min.js"></script>
+	<script src="app.js"></script>
+	<link rel='stylesheet' href='styles.css'></script>
+	<title>Event System</title>
+</head>
+<body>
+	<h1>Event System</h1>
+	<div id="list" ng-controller='ShoppingListController as list'>
+		<input type="text" ng-model="list.itemName" placeholder="item name">
+		<input type="text" ng-model="list.itemQuantity" placeholder="quantity">
+		<button ng-click="list.addItem();">Add Item</button>
+		<span>{{list.lastRemoved}}</span>
+		
+		<shopping-list-component items="list.items" 
+					   title={{list.title}} 
+					   on-remove="list.removeItem(index)"></shopping-list-component>
+		
+	</div>
+	
+</body>
+</html>
