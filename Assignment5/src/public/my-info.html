@@ -1,0 +1,17 @@
+
+<div class="container">
+	<h2 id="my-info-title" class="text-center">My Info</h2>
+	<div ng-if="myinfo.user">
+		Hello {{myinfo.user.firstname|uppercase}} {{myinfo.user.lastname|uppercase}},
+		<br>
+		We can contact you through email on {{myinfo.user.email|uppercase}} and Phone on #{{myinfo.user.phone}}
+		<br>
+ 		Your Favourite Dish is {{myinfo.user.favourite.name}} 
+ 		<br>
+        <img class="img-responsive" ng-src="{{myinfo.basePath}}/images/{{myinfo.user.favourite.short_name}}.jpg" alt="{{myinfo.user.favourite.short_name}}">
+        <p>{{myinfo.user.favourite.description}}</p>
+	</div>
+	<div ng-if="myinfo.signup">
+		Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+	</div>	
+</div>

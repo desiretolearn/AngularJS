@@ -1,0 +1,28 @@
+
+<div class="container">
+	<h2 id="sign-up-title" class="text-center">Sign Up</h2>
+	<form name="signUpForm" no-validate>
+		First Name: <input type="text" name="firstname" placeholder="Enter first name" ng-model="signup.user.firstname" required min.length="2" ng-maxLength="20"> {{signUpForm.firstname.$error.minlength}}
+		<span ng-if="(signUpForm.firstname.$error.minlength || signUpForm.firstname.$error.required) && signUpForm.firstname.$touched">Firstname must be atleast 2 characters long</span>
+		<span ng-if="signUpForm.firstname.$error.maxLength && signUpForm.firstname.$touched">Firstname cannot be longer than 20 characters</span>
+		<br>
+		Last Name: <input type="text" name="lastname" placeholder="Enter last name" ng-model="signup.user.lastname" required min.length="1" ng-maxLength="20"> 
+		<span ng-if="(signUpForm.lastname.$error.minlength || signUpForm.lastname.$error.required) && signUpForm.lastname.$touched">Lastname must be atleast 1 characters long</span>
+		<span ng-if="signUpForm.lastname.$error.maxLength && signUpForm.lastname.$touched">Lastname cannot be longer than 20 characters</span>
+		<br>
+		Email: <input type="email" name="email" placeholder="Enter your Email Id" ng-model="signup.user.email" required> 
+		<span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">Must be valid email address: handle@domain format</span>
+		<br>
+		Phone Number: <input type="text" name="phone" placeholder="Phone ###-###-####" ng-model="signup.user.phone" pattern="(\d{3})-(\d{3})-(\d{4})">
+		<span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched"> Phone must be in the format ###-###-####.
+		</span>
+		<br>
+		Favourite Dish: <input type="text" name="favourite" ng-model="signup.user.favourite" required>
+		<span ng-if="signup.error"> {{signup.error}}
+		</span>
+		<br>
+		<button ng-disabled="signUpForm.$invalid" ng-click="signup.submit()">Submit</button>
+	</form>
+	<span ng-if="signup.message"> {{signup.message}}
+		</span>	
+</div>

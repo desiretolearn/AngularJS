@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="FormApp">
+<head>
+	<meta charset="utf-8">
+	 <link rel="stylesheet" href="css/styles.css">
+	<title>Form Validation</title>
+</head>
+<body ng-controller="FormController as sample">
+<h1>Simple Form</h1>
+<fieldset>
+	<legend>Registration</legend>
+	<form name="sampleForm" no-validate>
+		Name: <input type="text" name="username" placeholder="Enter a username" ng-model="sample.user.username" required min.length="4" ng-maxLength="10"> {{sample.user.username}}
+		<span ng-if="(sampleForm.username.$error.minlength || sampleForm.username.$error.required) && sampleForm.username.$touched">Username must be atleast 4 characters long</span>
+		<span ng-if="sampleForm.username.$error.maxLength && sampleForm.username.$touched">Username cannot be longer than 10 characters</span>
+		<br>
+		Email: <input type="email" name="email" placeholder="Enter your Email Id" ng-model="sample.user.email" required> {{sample.user.email}}
+		<span ng-if="sampleForm.email.$invalid && sampleForm.email.$touched">Must be valid email address: handle@domain format</span>
+		<br>
+		Phone Number: <input type="text" name="phone" placeholder="Phone ###-###-####" ng-model="sample.user.phone" pattern="(\d{3})-(\d{3})-(\d{4})">
+		<span ng-if="sampleForm.phone.$invalid && sampleForm.phone.$touched"> Phone must be in the format ###-###-####.
+		</span>
+		<br>
+		<button ng-disabled="sampleForm.$invalid" ng-click="sample.submit()">Submit</button>
+		
+		<div style="margin-top: 10px;"> Form valid? {{sampleForm.$valid}}
+		</div>
+	</form>	
+</fieldset>
+<div id="info" ng-if="sample.completed">
+Username: {{sample.user.username}}<br>
+Email: {{sample.user.email}}<br>
+Phone: {{sample.user.phone}}</div>
+
+
+<script src="lib/angular.min.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>
