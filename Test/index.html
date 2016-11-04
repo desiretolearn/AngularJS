@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stop Watch</title>
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+<body ng-app="StopWatch">
+<div id="mainDiv" ng-controller="CounterController as counterCtrl">
+	<div id="counter">
+	{{counterCtrl.value}}
+	</div>
+	<div id="buttons">
+	<button type="button" ng-click="counterCtrl.startCounter();">Start</button>
+	<button type="button" ng-click="counterCtrl.stopCounter();">Stop</button>
+	<button type="button" ng-click="counterCtrl.resetCounter();">Reset</button>
+	</div>
+</div>
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
+
+

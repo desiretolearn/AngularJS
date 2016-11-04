@@ -1,0 +1,16 @@
+#mainDiv {
+	margin:20px auto;
+	border: 2px solid black;
+	width: 450px;
+	height:150px;
+}
+#counter {
+	font-size: 3.5em;
+	font-weight:bold;
+	text-align:center;
+}
+button{
+	width:100px;
+	height:30px;
+	margin:15px;
+}
